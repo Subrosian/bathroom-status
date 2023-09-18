@@ -22,7 +22,7 @@ void loop() {
       if (currentstate == 3594) {
         sessiontime = (millis() - milliclosed) / 1000;
         sessionminutes = sessiontime / 60;
-        sessionseconds = (sessiontime - (sessionminutes * 60) );
+        sessionseconds = sessiontime - (sessionminutes * 60);
         Serial.print("Door Opened (");
         Serial.print(currentstate);
         Serial.print("). Session time = ");
