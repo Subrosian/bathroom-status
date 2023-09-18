@@ -11,7 +11,7 @@ RCSwitch mySwitch = RCSwitch();
 
 void setup() {
   Serial.begin(9600);
-  mySwitch.enableReceive(1);  // Receiver on interrupt 1
+  mySwitch.enableReceive(1);  //Receiver on interrupt 1
 }
 
 void loop() {
@@ -19,7 +19,7 @@ void loop() {
     currentstate = mySwitch.getReceivedValue();
     if (currentstate != laststate) {
       laststate = currentstate;
-      if (currentstate == 3594) {
+      if (currentstate == 3594) { //Transmitter sends 3594 on when opening
         sessiontime = (millis() - milliclosed) / 1000;
         sessionminutes = sessiontime / 60;
         sessionseconds = sessiontime - (sessionminutes * 60);
@@ -29,7 +29,7 @@ void loop() {
         Serial.print(sessionseconds);
         Serial.println("s");
       }
-      if (currentstate == 3598) {
+      if (currentstate == 3598) { //Transmitter sends 3598 on when closing
         Serial.println("Door Closed.");
         milliclosed = millis();
       }
