@@ -1,4 +1,11 @@
 #include <RCSwitch.h>
+#include <Adafruit_NeoPixel.h>
+
+#define PIN 3         // On Trinket or Gemma, suggest changing this to 1
+#define NUMPIXELS 12  // Popular NeoPixel ring size
+
+Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+
 
 int laststate;
 int currentstate;
@@ -12,6 +19,7 @@ RCSwitch mySwitch = RCSwitch();
 void setup() {
   Serial.begin(9600);
   mySwitch.enableReceive(1);  //Receiver on interrupt 1
+  pixels.begin();
 }
 
 void loop() {
@@ -28,10 +36,18 @@ void loop() {
         Serial.print("m");
         Serial.print(sessionseconds);
         Serial.println("s");
+        for (int i = 0; i < NUMPIXELS; i++) {  // For each pixel...
+          pixels.setPixelColor(i, pixels.Color(0, 50, 0));
+        }
+        pixels.show();  // Send the updated pixel colors to the hardware.
       }
       if (currentstate == 3598) {  //Transmitter sends 3598 on when closing
         Serial.println("Door Closed.");
         milliclosed = millis();
+        for (int i = 0; i < NUMPIXELS; i++) {  // For each pixel...
+          pixels.setPixelColor(i, pixels.Color(150, 0, 0));
+        }
+        pixels.show();  // Send the updated pixel colors to the hardware.
       }
     }
     mySwitch.resetAvailable();
