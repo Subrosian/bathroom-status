@@ -23,18 +23,14 @@ void loop() {
         sessiontime = (millis() - milliclosed) / 1000;
         sessionminutes = sessiontime / 60;
         sessionseconds = sessiontime - (sessionminutes * 60);
-        Serial.print("Door Opened (");
-        Serial.print(currentstate);
-        Serial.print("). Session time = ");
+        Serial.print("Door Opened. Session time = ");
         Serial.print(sessionminutes);
         Serial.print("m");
         Serial.print(sessionseconds);
         Serial.println("s");
       }
       if (currentstate == 3598) {
-        Serial.print("Door Closed (");
-        Serial.print(currentstate);
-        Serial.println(")");
+        Serial.println("Door Closed.");
         milliclosed = millis();
       }
     }
