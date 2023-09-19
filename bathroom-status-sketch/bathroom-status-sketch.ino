@@ -48,7 +48,7 @@ void updateclock() {
       pixels.setPixelColor(0, pixels.Color(20, 0, 0));
     }
   }
-  pixels.setPixelColor(secondsled, pixels.Color(40, 10, 0));
+  pixels.setPixelColor(secondsled, pixels.Color(40, 20, 0));
   if ((secondsled <= minutesled) && (secondsled != 0)) {
     pixels.setPixelColor(secondsled, pixels.Color(60, 0, 0));
   }
