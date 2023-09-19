@@ -50,10 +50,10 @@ void updateclock() {
   }
   pixels.setPixelColor(secondsled, pixels.Color(40, 20, 0));
   if ((secondsled <= minutesled) && (secondsled != 0)) {
-    pixels.setPixelColor(secondsled, pixels.Color(60, 0, 0));
+    pixels.setPixelColor(secondsled, pixels.Color(80, 0, 0));
   }
   if ((secondsled == 0) && (minutesled >= 12)) {
-    pixels.setPixelColor(0, pixels.Color(60, 0, 0));
+    pixels.setPixelColor(0, pixels.Color(80, 0, 0));
   }
   pixels.show();
 }
@@ -62,7 +62,10 @@ void setup() {
   Serial.begin(9600);
   mySwitch.enableReceive(1);  //Receiver on interrupt 1
   pixels.begin();
-  pixels.clear();
+   delay(1000);
+  for (int i = 0; i < 12; ++i) {
+    pixels.setPixelColor(i, pixels.Color(0, 0, 20));
+  }
   pixels.show();
 }
 
